@@ -1,0 +1,28 @@
+{
+  "name": "flask-express",
+  "description": "Express Gateway Instance Bootstraped from Command Line",
+  "repository": {},
+  "license": "UNLICENSED",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "babel-node $1"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-gateway": "^1.16.11",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.0",
+    "morgan": "^1.10.1",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.7",
+    "@babel/node": "^7.25.7",
+    "@babel/preset-env": "^7.25.7"
+  }
+}
