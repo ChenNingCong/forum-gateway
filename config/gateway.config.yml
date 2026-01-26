@@ -74,6 +74,7 @@ pipelines:
   # SECURE PIPELINE (Shared Auth Logic)
   protectedPipeline:
     apiEndpoints:
+      - authApi
       - userApi
       - postApi
       - replyApi
