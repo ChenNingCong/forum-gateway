@@ -121,6 +121,12 @@ pipelines:
       - proxy:
           - condition:
               name: pathMatch
+              pattern: "/api/auth(.*)"
+            action:
+              serviceEndpoint: authService
+              changeOrigin: true
+          - condition:
+              name: pathMatch
               pattern: "/api/users(.*)"
             action:
               serviceEndpoint: userService
