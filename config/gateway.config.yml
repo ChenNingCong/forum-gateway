@@ -12,7 +12,7 @@ apiEndpoints:
   authApi:
     paths: ["/api/auth/*", "/api/auth/"]
   userApi:
-    paths: ["/api/users/*", "/api/users/"]
+    paths: ["/api/users/*", "/api/users/", "/api/internal/users/*", "/api/internal/users/"]
   postApi:
     paths: ["/api/posts/*", "/api/posts/"]
   replyApi:
@@ -139,6 +139,12 @@ pipelines:
               changeOrigin: true
           - condition:
               name: pathMatch
+              pattern: "/api/internal/users(.*)"
+            action:
+              serviceEndpoint: userService
+              changeOrigin: true
+          - condition:
+              name: pathMatch
               pattern: "/api/posts(.*)"
             action:
               serviceEndpoint: postReplyService
@@ -176,7 +182,7 @@ pipelines:
       - terminate:
           action:
             statusCode: 404
-            message: "Resource not found"
+            message: "Gateway: Resource not found"
             
 
 
