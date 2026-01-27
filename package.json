@@ -5,6 +5,7 @@
   "license": "UNLICENSED",
   "version": "1.0.0",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "babel-node $1"
   },
