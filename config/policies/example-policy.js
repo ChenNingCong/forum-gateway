@@ -4,7 +4,7 @@ module.exports = {
     return async (req, res, next) => {
       try {
         // split the string into token
-        if (["/api/auth/login", "/api/auth/register"].includes(req.url)) {
+        if (["/api/auth/login", "/api/auth/register", "/api/users/register", "/api/users/login"].includes(req.url)) {
           return next()
         }
         console.log(req.url)
