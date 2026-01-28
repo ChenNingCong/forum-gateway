@@ -32,20 +32,15 @@ module.exports = {
               headers: { 'Content-Type': 'application/json', 'Authorization': req.headers.authorization },
             });
 
+            const data = await response.json();
             if (response.ok) {
-              const userData = await response.json();
-              console.debug(userData)
+              console.debug(data)
               // Inject decrypted data into headers for the backend to see
-              req.headers['X-User-Context'] = JSON.stringify(userData.data);
+              req.headers['X-User-Context'] = JSON.stringify(data.data);
               return next();
+            } else {
+              res.status(response.status).json(data);
             }
-
-            res.status(500).json({
-              message: "Auth Service Unavailable",
-              data: null,
-              code: 401,
-              success: false
-            });
           } catch (err) {
             console.log(err)
             res.status(500).send('Auth Service Unavailable');
