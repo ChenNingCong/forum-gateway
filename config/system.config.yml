@@ -21,3 +21,7 @@ refreshTokens:
 authorizationCodes:
   timeToExpiry: 300000
 
+plugins:
+   example: # "express-gateway-plugin-example"
+      param1: 'global per plugin param1'
+      package: '/home/chenningcong/Desktop/integration-doc/forum-gateway/config/manifest.js'

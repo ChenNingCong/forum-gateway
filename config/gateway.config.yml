@@ -40,6 +40,7 @@ policies:
   - log
   - request-transformer
   - terminate
+  - example
 
 serviceEndpoints:
   # display the frontend page
@@ -91,29 +92,10 @@ pipelines:
       - log:
           - action:
               message: "Authenticated request to ${req.url}"
+      - example:
+          - action:  # everything under the action will be actionParams
+              baseUrl: 'https://example.com'
 
-      # TODO: enable JWT validation once cookie extraction is fixed
-      # The following two steps are to extract JWT from Cookie and validate it
-
-      # # Step 1: Extract Cookie and put into Authorization header
-      # - request-transformer:
-      #     - action:
-      #         headers:
-      #           add:
-      #             authorization: >
-      #               req.headers.cookie && req.headers.cookie.includes('token=') 
-      #               ? req.headers.cookie.split('; ').find(row => row.startsWith('token=')).split('=')[1] 
-      #               : ''
-      # # Step 2: Validate JWT
-      # - jwt:
-      #     - action:
-      #         secretOrPublicKey: ${ACCESS_TOKEN_SECRET}
-      #         credentialsRequired: true
-      #         tokenProperty: 'authorization'
-      #         algorithm: 'HS256'
-
-      # Step 3: Inject UserID for Microservices
-      # UserID is stored in X-User-Context as a JSON string
       - request-transformer:
           - action:
               headers:
