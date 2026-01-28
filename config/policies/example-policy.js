@@ -7,6 +7,9 @@ module.exports = {
         if (["/api/auth/login", "/api/auth/register", "/api/users/register", "/api/users/login"].includes(req.url)) {
           return next()
         }
+        if (req.url.startsWith("/api/users/validate")) {
+          return next()
+        }
         console.log(req.url)
         console.log(req.headers)
         if (req.headers["x-service-key"]) {
@@ -36,6 +39,9 @@ module.exports = {
             if (response.ok) {
               console.debug(data)
               // Inject decrypted data into headers for the backend to see
+              req.headers['X-User-Id'] = data.data.userId
+              console.log(data.data.userId)
+              console.log(req.headers)
               req.headers['X-User-Context'] = JSON.stringify(data.data);
               return next();
             } else {
