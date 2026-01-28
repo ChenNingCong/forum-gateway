@@ -95,15 +95,6 @@ pipelines:
       - example:
           - action:  # everything under the action will be actionParams
               baseUrl: 'https://example.com'
-
-      - request-transformer:
-          - action:
-              headers:
-                add:
-                  # X-User-Context is a JSON string containing user info
-                  # read X-User-Id from the X-User-Context
-                  x-user-id: >
-                    req.headers['x-user-context'] ? JSON.parse(req.headers['x-user-context']).userId : ''
             
       # Step 4: Conditional Proxy (Route to correct microservice)
       - proxy:
